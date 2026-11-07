@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact Me | 167185 - YAMAN NASER MOHAMMAD NEMRAWI</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav>
+  <a href="index.html">Home</a>
+  <a href="contact.html" class="active">Contact Me</a>
+</nav>
+<main>
+  <h1>Contact Me</h1>
+  <p class="meta">Fill in all fields and press Send.</p>
+  <form id="contactForm" novalidate>
+    <label for="fullname">Full name</label>
+    <input type="text" id="fullname" name="fullname">
+    <div class="error" id="err-fullname"></div>
+
+    <label for="email">Email address</label>
+    <input type="email" id="email" name="email">
+    <div class="error" id="err-email"></div>
+
+    <label for="country">Country</label>
+    <select id="country" name="country">
+      <option value="">Select your country</option>
+      <option>Jordan</option>
+      <option>Saudi Arabia</option>
+      <option>United Arab Emirates</option>
+      <option>Palestine</option>
+      <option>Egypt</option>
+      <option>United States</option>
+      <option>United Kingdom</option>
+      <option>Other</option>
+    </select>
+    <div class="error" id="err-country"></div>
+
+    <label for="comments">Comments</label>
+    <textarea id="comments" name="comments" rows="5"></textarea>
+    <div class="error" id="err-comments"></div>
+
+    <button type="submit">Send message</button>
+  </form>
+</main>
+<footer>&copy; 2026 YAMAN NASER MOHAMMAD NEMRAWI</footer>
+
+<script>
+document.getElementById("contactForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+  var fields = [
+    { id: "fullname", msg: "Please enter YAMAN NASER MOHAMMAD NEMRAWI." },
+    { id: "email", msg: "Please enter your email address." },
+    { id: "country", msg: "Please select your country." },
+    { id: "comments", msg: "Please write your comments." }
+  ];
+  var valid = true;
+  fields.forEach(function (f) {
+    var el = document.getElementById(f.id);
+    var err = document.getElementById("err-" + f.id);
+    if (el.value.trim() === "") {
+      err.textContent = f.msg;
+      valid = false;
+    } else {
+      err.textContent = "";
+    }
+  });
+  var email = document.getElementById("email").value.trim();
+  if (email !== "" && email.indexOf("@") === -1) {
+    document.getElementById("err-email").textContent = "Please enter a valid email address.";
+    valid = false;
+  }
+  if (valid) {
+    alert("Thank you! Your form was submitted successfully.");
+    this.reset();
+  }
+});
+</script>
+</body>
+</html>
